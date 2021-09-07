@@ -4,7 +4,7 @@
 | ------   | ---------- | ------------------------------ |
 | name | string | null: false |
 | email    | string | null: false |
-| password | string | null: false |
+| encrypted_password | string | null: false |
 | last name Chinese characters | string | null: false |
 | first name Chinese characters | string | null: false |
 | last name katakana | string | null: false |
