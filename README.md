@@ -2,14 +2,20 @@
 
 | Column   | Type       | Options                        |
 | ------   | ---------- | ------------------------------ |
+| name | string | null: false |
 | email    | string | null: false |
 | password | string | null: false |
-| name     | string | null: false |
-| profile  | text   | null: false |
+| last name Chinese characters | string | null: false |
+| first name Chinese characters | string | null: false |
+| last name katakana | string | null: false |
+| first name katakana | string | null: false |
+| birthday_year   | date | null: false |
+| birth_month | date | null: false |
+| birthday_day | date | null: false |
 
 has_many : addresses
 has_many : items
-has_one : user_credit
+has_one : bought
 
 #items table
 
@@ -17,39 +23,41 @@ has_one : user_credit
 | ------ | ---------- | ------------------------------- |
 | title  | string     | null: false |
 | item_text | text |null: false |
-| category | string | null: false |
-| item_status | string | null: false |
-| Shipping charges | string | null: false |
-| Shipping area | string | null: false |
-| days to ship | string | null: false |
-| price | text | null: false |
-| user | references | foreign_key: true |
+| category | date | null: false |
+| item_condition | date | null: false |
+| delivery_fee | date | null: false |
+| prefecture | date | null: false |
+| days to ship | date | null: false |
+| price | string | null: false |
+| user_id | references | foreign_key: true |
 
-has_one : address
-has_one : user_credit
+has_one : addresses
+has_one : bought
 belongs_to : users
 
 #addresses table
 
 | Column | Type       |Options|
 | ------ | ---------- | ----- |
-| prefectures   | text       | null:false |
-| Ward   | references | foreign_key: true |
-| Address town | references | foreign_key: true|
-| Postal code | string | null: false |
-| user | references | foreign_key: true|
+| prefectures   | date       | null:false |
+| ward   | references | foreign_key: true |
+| address town | references | foreign_key: true|
+| postal code | string | null: false |
+| build name | string | null: false |
+| telephone number | string |null: false |
+| user_id | references | foreign_key: true|
 
-belongs_to : user
-belongs_to : item
+belongs_to : users
+belongs_to : items
 
-#user_credit table
+#bought table
 
 | Column | Type       |Options|
 | ------ | ---------- | ----- |
 | credit_numbers | references: user | foreign_key: true |
 | credit_expiration_date | references: user | foreign_key: true |
-| security code | references | foreign_key: true |
-| user | references | foreign_key: true |
+| security_code | references | foreign_key: true |
+| user_id | references | foreign_key: true |
 
-belongs_to : user
-has_one : address
+belongs_to : users
+has_one : addresses
