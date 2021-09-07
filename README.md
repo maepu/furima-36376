@@ -3,16 +3,16 @@
 | Column   | Type       | Options                        |
 | ------   | ---------- | ------------------------------ |
 | name | string | null: false |
-| email    | string | unique: true |
+| email    | string | null: false,unique: true |
 | encrypted_password | string | null: false |
-| last_name_Chinese_characters | string | null: false |
-| first_name_Chinese_characters | string | null: false |
+| last_name_chinese_characters | string | null: false |
+| first_name_chinese_characters | string | null: false |
 | last_name_katakana | string | null: false |
 | first_name_katakana | string | null: false |
 | birthday | date | null: false |
 
 has_many : items
-has_one : bought
+has_many : bought_items
 
 #items table
 
@@ -20,16 +20,15 @@ has_one : bought
 | ------ | ---------- | ------------------------------- |
 | title  | string     | null: false |
 | item_text | text |null: false |
-| category_id | integer |  |
-| item_condition_id | integer |  |
-| delivery_fee_id | integer |  |
-| prefecture_id | integer |  |
-| days_to_ship_id | integer |  |
+| category_id | integer | null: false |
+| item_condition_id | integer | null: false |
+| delivery_fee_id | integer | null: false |
+| prefecture_id | integer | null: false |
+| days_to_ship_id | integer | null: false |
 | price | integer | null: false |
-| user_id | references | foreign_key: true |
+| user_id | references | null: false,foreign_key: true |
 
-has_one : addresses
-has_one : bought
+has_one : bought_item
 belongs_to : users
 
 #addresses table
@@ -42,17 +41,17 @@ belongs_to : users
 | postal_code | string | null: false |
 | build_name | string |  |
 | telephone_number | string |null: false |
-| user_id | references | foreign_key: true|
+| bought_items_id | references | null: false,foreign_key: true |
 
-has_one : bought
+belongs_to : bought_item
 
-#bought table
+#bought_items table
 
 | Column | Type       |Options|
 | ------ | ---------- | ----- |
-| current_user | references: user | foreign_key: true |
-| current_item | references: user | foreign_key: true |
-| user_id | references | foreign_key: true |
+| user | references: user | null: false,foreign_key: true |
+| item | references: user | null: false,foreign_key: true |
 
-belongs_to : users
-has_one : addresses
+belongs_to : user
+has_one : address
+belongs_to : item
