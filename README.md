@@ -26,10 +26,10 @@ has_many : bought_items
 | prefecture_id | integer | null: false |
 | days_to_ship_id | integer | null: false |
 | price | integer | null: false |
-| user_id | references | null: false,foreign_key: true |
+| user | references | null: false,foreign_key: true |
 
 has_one : bought_item
-belongs_to : users
+belongs_to : user
 
 #addresses table
 
@@ -41,7 +41,7 @@ belongs_to : users
 | postal_code | string | null: false |
 | build_name | string |  |
 | telephone_number | string |null: false |
-| bought_items_id | references | null: false,foreign_key: true |
+| bought_item | references | null: false,foreign_key: true |
 
 belongs_to : bought_item
 
