@@ -49,8 +49,8 @@ belongs_to : bought_item
 
 | Column | Type       |Options|
 | ------ | ---------- | ----- |
-| user | references: | null: false,foreign_key: true |
-| item | references: | null: false,foreign_key: true |
+| user | references | null: false,foreign_key: true |
+| item | references | null: false,foreign_key: true |
 
 belongs_to : user
 has_one : address
